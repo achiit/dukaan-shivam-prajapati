@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" style="color-scheme: dark;"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Royal Jewellery</title>
+<style>
+:root{--bg:#fffaf0;--card:#fff;--tx:#2a2118;--mut:#7a6a58;--gold:#b8860b;--acc:#6b1d2a;--line:#eadfc8;--ok:#1f7a3d;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17120d;--card:#231c14;--tx:#f3e9d6;--mut:#b3a48c;--gold:#e0b34a;--acc:#a8324a;--line:#3a2f22;--ok:#5fcf86;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17120d;--card:#231c14;--tx:#f3e9d6;--mut:#b3a48c;--gold:#e0b34a;--acc:#a8324a;--line:#3a2f22;--ok:#5fcf86;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+#wrap{max-width:480px;margin:0 auto;padding:0 14px 90px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+h1{font:700 21px Georgia,"Times New Roman",serif;margin:0;color:var(--gold);letter-spacing:.3px}
+.tag{color:var(--mut);font-size:12px}
+.cartbtn{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:7px 12px;color:var(--tx);font-size:14px;cursor:pointer}
+.banner{margin:14px 0;border-radius:16px;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--acc),#3b0d17);color:#fff;padding:18px;min-height:110px}
+.banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.banner .t{position:relative;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,0));margin:-18px;padding:18px;min-height:110px}
+.banner b{font:700 20px Georgia,serif;display:block}
+.banner small{display:inline-block;margin-top:8px;background:#ffffff26;border-radius:10px;padding:2px 9px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative}
+.ph{aspect-ratio:1;background:linear-gradient(135deg,#f3e3b5,#d9b45a);display:flex;align-items:center;justify-content:center;font-size:44px}
+.ph img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;top:8px;left:8px;background:var(--acc);color:#fff;font-size:12px;font-weight:700;border-radius:8px;padding:2px 7px}
+.pi{padding:9px 10px 11px}
+.pn{font-weight:600;font-size:14px;margin-bottom:3px}
+.pr{font-weight:700}.old{color:var(--mut);text-decoration:line-through;font-weight:400;font-size:13px;margin-left:5px}
+.btn{display:block;width:100%;border:0;border-radius:10px;background:var(--acc);color:#fff;padding:10px;font-size:14px;font-weight:600;cursor:pointer;text-align:center;text-decoration:none;margin-top:8px}
+.btn.alt{background:transparent;color:var(--tx);border:1px solid var(--line)}
+.btn.wa{background:#1f9d55}
+.btn.red{background:#b3261e}
+.qty{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.qty button{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--tx);font-size:18px;cursor:pointer}
+h2{font:700 17px Georgia,serif;margin:22px 0 10px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}
+label{display:block;font-size:12px;color:var(--mut);margin:10px 0 3px}
+input,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.line{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+.line .ph{width:56px;aspect-ratio:1;border-radius:10px;font-size:22px;flex:none;overflow:hidden}
+.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);z-index:6}
+.bar .btn{max-width:452px;margin:0 auto}
+#toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#222;color:#fff;padding:9px 15px;border-radius:20px;font-size:13px;opacity:0;pointer-events:none;transition:.25s;z-index:9;max-width:90%}
+#toast.on{opacity:1}
+.mut{color:var(--mut);font-size:13px}.link{color:var(--mut);background:none;border:0;text-decoration:underline;cursor:pointer;font-size:12px}
+:root{--g1:#e6c25a;--g2:#a87a12;--sh:0 6px 18px rgba(80,40,10,.10)}
+body{background:radial-gradient(120% 60% at 50% 0,rgba(184,134,11,.10),transparent 60%),var(--bg);letter-spacing:.1px}
+header{margin:0 -14px;padding:12px 14px;background:linear-gradient(135deg,#4a1220,#6b1d2a 60%,#3b0d17);border-bottom:2px solid var(--g2);color:#fff}
+header h1{background:linear-gradient(90deg,#f6dd8c,#d9a936,#f6dd8c);-webkit-background-clip:text;background-clip:text;color:transparent;font-size:22px;letter-spacing:.8px}
+header .tag{color:#e9d9c4;letter-spacing:1.2px;text-transform:uppercase;font-size:10px;margin-top:1px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 22px Georgia,serif;color:#4a1220;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 0 0 2px rgba(255,255,255,.25)}
+.cartbtn{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);color:#fff;backdrop-filter:blur(4px)}
+.hero{margin:16px 0 4px;text-align:center}
+.hero small{letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-size:11px}
+.hero h3{font:700 26px/1.2 Georgia,serif;margin:6px 0}
+.hero p{margin:0;color:var(--mut)}
+.trust{display:flex;gap:6px;margin:14px 0 0}
+.trust div{flex:1;text-align:center;font-size:11px;color:var(--mut);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 4px}
+.trust b{display:block;font-size:18px}
+.banner{box-shadow:var(--sh);border:1px solid var(--g2)}
+.card{box-shadow:var(--sh);border-radius:16px;transition:transform .15s}
+.card:active{transform:scale(.98)}
+.ph{background:linear-gradient(135deg,#f7ebc4,#e2bd5e)}
+.badge{background:linear-gradient(135deg,#8c1f33,#5a1019);box-shadow:0 2px 6px rgba(0,0,0,.25);border-radius:0 10px 10px 0;left:0;top:10px;padding:3px 9px}
+.pn{font-family:Georgia,serif;font-size:14.5px}
+.pr{color:var(--acc);font-size:16px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pr{color:var(--gold)}}
+.btn{background:linear-gradient(135deg,#7d2434,#5a1019);box-shadow:0 3px 10px rgba(90,16,25,.25);letter-spacing:.3px;border-radius:12px}
+.btn.alt{background:var(--card);box-shadow:none}.btn.wa{background:linear-gradient(135deg,#25b865,#1a8f4b)}.btn.red{background:#b3261e}
+h2{display:flex;align-items:center;gap:10px;font-size:18px;margin:26px 0 12px}
+h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--g2),transparent)}
+.sec{border-radius:16px;box-shadow:var(--sh)}
+.bar{background:var(--card);box-shadow:0 -6px 18px rgba(0,0,0,.08)}
+foot{display:block;text-align:center;margin-top:26px;color:var(--mut);font-size:12px}
+:root:root:root{--bg:#120b0f;--card:#1e1317;--tx:#f5ead6;--mut:#bfae95;--gold:#e0b34a;--acc:#8c1f33;--line:#3b2a2d;--ok:#5fcf86;color-scheme:dark}
+body{background:radial-gradient(90% 45% at 50% 0,rgba(224,179,74,.20),transparent 65%),radial-gradient(80% 40% at 100% 100%,rgba(140,31,51,.38),transparent 60%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M24 4l20 20-20 20L4 24z' fill='none' stroke='%23e0b34a' stroke-opacity='.08'/%3E%3C/svg%3E"),#120b0f;background-attachment:fixed,fixed,scroll,scroll}
+.sec,.card{background:linear-gradient(160deg,#261a1f,#1a1014);border-color:#4a3524}
+.trust div{background:#1e1317cc}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="app"></div></div>
+<div id="toast" class=""></div>
+<script id="data" type="application/json">{"name":"Royal Jewellery","tagline":"Earrings · Bracelets · Gifts","wa":"","ig":"","addr":"","map":"","ph":"16190368bf45a445f61a8b556fafde9f94ce27ac2dbb470d20217c9b0b7cda19","salt":"123o5k6z6gm5224q","coupons":[{"code":"DIWALI10","pct":10}],"minOrder":299,"combo":499,"comboText":"Combo offer unlocked!","offerTitle":"Festive Offer!","offerText":"Festive Offer!","offerEnd":"2026-10-26","banner":"","products":[{"id":"p1793010397158","name":"New product","price":500,"disc":0,"img":""},{"id":"p1793010387680","name":"New product","price":500,"disc":0,"img":""},{"id":"p1793010385122","name":"New product","price":500,"disc":0,"img":""},{"id":"p1","name":"Gold Plated Earrings","price":0,"disc":0,"img":""},{"id":"p2","name":"Pearl Bracelet","price":0,"disc":0,"img":""},{"id":"p3","name":"Designer Jhumka","price":19,"disc":0,"img":""}]}</script>
+<script>
+const $=s=>document.querySelector(s);
+let D=JSON.parse($('#data').textContent),view='shop',cart={},admin=false,draft=null,cust={name:'',phone:'',addr:''},coupon=null;
+try{cart=JSON.parse(localStorage.getItem('rj_cart')||'{}')}catch(e){}
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')};
+const offerOn=()=>!D.offerEnd||today()<=D.offerEnd;
+const fd=s=>new Date(s+'T00:00:00').toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+const pr=p=>{const d=offerOn()?Math.min(Math.max(+p.disc||0,0),95):0;return{d,f:Math.round((+p.price||0)*(1-d/100))}};
+const total=()=>Object.keys(cart).reduce((s,id)=>{const p=D.products.find(x=>x.id==id);return s+(p?pr(p).f*cart[id]:0)},0);
+const count=()=>Object.keys(cart).reduce((s,id)=>s+(D.products.find(x=>x.id==id)?cart[id]:0),0);
+function toast(m,ms){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove('on'),ms||2600)}
+function persist(){try{localStorage.setItem('rj_cart',JSON.stringify(cart))}catch(e){}}
+function go(v){view=v;render();scrollTo(0,0)}
+function add(id,n){cart[id]=(cart[id]||0)+n;if(cart[id]<=0)delete cart[id];persist();render()}
+const img=p=>p.img?`<img src="${esc(p.img)}" alt="">`:'💍';
+function render(){
+ document.title=D.name;
+ let h=`<header><div class="brand"><span class="logo">${esc((D.name||'R').trim().charAt(0).toUpperCase())}</span><div><h1>${esc(D.name)}</h1><div class="tag">${esc(D.tagline)}</div></div></div>`;
+ h+=view==='shop'?`<button class="cartbtn" onclick="go('cart')">🛍 ${count()}</button>`:`<button class="cartbtn" onclick="go('shop')">← Shop</button>`;
+ h+='</header>';
+ h+=view==='shop'?shop():view==='cart'?cartV():adminV();
+ if(view==='shop'&&count())h+=`<div class="bar"><button class="btn" style="margin:0" onclick="go('cart')">View cart (${count()}) · ₹${total()}</button></div>`;
+ $('#app').innerHTML=h;
+}
+function shop(){
+ let h=`<div class="hero"><small>Fine Collection</small><h3>Jewellery that makes every moment shine</h3><p>Choose your favourite and order in one tap</p></div><div class="trust"><div><b>✨</b>Latest designs</div><div><b>💬</b>Easy WhatsApp order</div><div><b>🎁</b>Festive offers</div></div>`;
+ if(D.banner||D.offerTitle){
+  h+=`<div class="banner">${D.banner?`<img src="${esc(D.banner)}" alt="">`:''}<div class="t"><b>${esc(D.offerTitle)}</b>${esc(D.offerText)}${D.offerEnd?`<br><small>${offerOn()?'Offer ends '+fd(D.offerEnd):'Offer ended'}</small>`:''}</div></div>`;
+ }
+ h+='<div class="grid">';
+ D.products.forEach(p=>{const x=pr(p),q=cart[p.id]||0;
+  h+=`<div class="card">${x.d?`<span class="badge">${x.d}% OFF</span>`:''}<div class="ph">${img(p)}</div><div class="pi"><div class="pn">${esc(p.name)}</div><div><span class="pr">₹${x.f}</span>${x.d?`<span class="old">₹${p.price}</span>`:''}</div>`+
+  (q?`<div class="qty"><button onclick="add('${p.id}',-1)">−</button><b>${q}</b><button onclick="add('${p.id}',1)">+</button></div>`:`<button class="btn" onclick="add('${p.id}',1)">Add to cart</button>`)+`</div></div>`;
+ });
+ h+='</div>';
+ if(!D.products.length)h+='<p class="mut">No products yet.</p>';
+ const ig=(D.ig||'').replace(/^@/,''),map=D.map||(D.addr?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(D.addr):'');
+ h+=`<h2>Visit / Contact</h2><div class="sec">${D.addr?`<div>📍 ${esc(D.addr)}</div>`:'<div class="mut">Shop details coming soon</div>'}`;
+ if(D.wa)h+=`<a class="btn wa" target="_blank" rel="noopener" href="https://wa.me/${D.wa.replace(/\D/g,'')}">WhatsApp us</a>`;
+ if(ig)h+=`<a class="btn alt" target="_blank" rel="noopener" href="https://instagram.com/${encodeURIComponent(ig)}">Instagram @${esc(ig)}</a>`;
+ if(map)h+=`<a class="btn alt" target="_blank" rel="noopener" href="${esc(map)}">Open location in Maps</a>`;
+ h+=`</div><p style="text-align:center;margin-top:22px"><button class="link" onclick="go('admin')">Owner login</button></p><foot>© ${esc(D.name)} · All rights reserved<br><b style="color:var(--gold);letter-spacing:.5px">Registered by Shivam Prajapati</b></foot>`;
+ return h;
+}
+function cartV(){
+ const ids=Object.keys(cart).filter(id=>D.products.find(p=>p.id==id));
+ if(!ids.length)return '<h2>Your cart is empty</h2><button class="btn" onclick="go(\'shop\')">Browse jewellery</button>';
+ let h='<h2>Your cart</h2><div class="sec">';
+ ids.forEach(id=>{const p=D.products.find(x=>x.id==id);
+  h+=`<div class="line"><div class="ph">${img(p)}</div><div style="flex:1"><div class="pn">${esc(p.name)}</div><div class="mut">₹${pr(p).f} each</div></div><div class="qty" style="margin:0;gap:8px"><button onclick="add('${id}',-1)">−</button><b>${cart[id]}</b><button onclick="add('${id}',1)">+</button></div></div>`});
+ h+=`<div class="line" style="border:0"><b style="flex:1">${coupon?'Subtotal':'Total'}</b><b>₹${total()}</b></div>${coupon?`<div class="line" style="border:0"><span style="flex:1;color:var(--ok)">Coupon ${esc(coupon.code)} (${coupon.pct}% off)</span><b style="color:var(--ok)">− ₹${disc()}</b></div><div class="line" style="border:0"><b style="flex:1">You pay</b><b>₹${payable()}</b></div>`:''}</div>
+ <h2>Coupon code</h2><div class="sec"><div class="row"><input id="cp" placeholder="Enter coupon code" value="${coupon?esc(coupon.code):''}" ${coupon?'readonly':''}><button class="btn alt" style="margin:0;flex:none;width:90px" onclick="${coupon?'coupon=null;render()':'applyC()'}">${coupon?'Remove':'Apply'}</button></div></div>
+ <h2>Delivery details</h2><div class="sec"><label>Your name</label><input value="${esc(cust.name)}" oninput="cust.name=this.value">
+ <label>Phone</label><input type="tel" value="${esc(cust.phone)}" oninput="cust.phone=this.value">
+ <label>Full address</label><textarea rows="3" oninput="cust.addr=this.value">${esc(cust.addr)}</textarea></div>
+ ${nudge()}<button class="btn wa" onclick="order()">Place order on WhatsApp</button>`;
+ return h;
+}
+function order(){
+ const items=Object.keys(cart).map(id=>[D.products.find(p=>p.id==id),cart[id]]).filter(x=>x[0]);
+ if(!items.length)return;
+ if(D.minOrder&&total()<D.minOrder){toast('Minimum order is ₹'+D.minOrder);return}
+ if(!cust.name.trim()||!cust.addr.trim()){toast('Please enter your name and address');return}
+ const num=(D.wa||'').replace(/\D/g,'');
+ if(!num){toast('Shop WhatsApp number is not set yet');return}
+ let t='*New order – '+D.name+'*\n\n';
+ items.forEach(([p,q],i)=>{t+=(i+1)+'. '+p.name+' × '+q+' – ₹'+(pr(p).f*q)+'\n'});
+ if(coupon)t+='\nSubtotal: ₹'+total()+'\nCoupon '+coupon.code+' ('+coupon.pct+'%): -₹'+disc();t+='\n*Total: ₹'+payable()+'*\n\nName: '+cust.name+'\nPhone: '+cust.phone+'\nAddress: '+cust.addr+((D.combo&&total()>=D.combo)?'\n\n*Combo offer applied*':'');
+ const a=document.createElement('a');a.href='https://wa.me/'+num+'?text='+encodeURIComponent(t);a.target='_blank';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
+}
+/* ---------- OWNER ---------- */
+function adminV(){
+ if(!admin)return `<h2>Owner login</h2><div class="sec"><label>Password</label><input id="pw" type="password" onkeydown="if(event.key==='Enter')login()"><button class="btn" onclick="login()">Login</button><p class="mut">Only the shop owner can open this section.</p></div>`;
+ const d=draft;
+ let h=`<h2>Shop details</h2><div class="sec">
+ <label>Shop name</label><input value="${esc(d.name)}" oninput="draft.name=this.value">
+ <label>Tagline</label><input value="${esc(d.tagline)}" oninput="draft.tagline=this.value">
+ <label>WhatsApp number (with country code, e.g. 919876543210)</label><input type="tel" value="${esc(d.wa)}" oninput="draft.wa=this.value">
+ <label>Instagram ID</label><input value="${esc(d.ig)}" oninput="draft.ig=this.value">
+ <label>Shop address / location</label><textarea rows="2" oninput="draft.addr=this.value">${esc(d.addr)}</textarea>
+ <label>Google Maps link (optional)</label><input value="${esc(d.map)}" oninput="draft.map=this.value"></div>
+ <h2>Offer / Advertisement</h2><div class="sec">
+ <label>Offer title</label><input value="${esc(d.offerTitle)}" oninput="draft.offerTitle=this.value">
+ <label>Offer text</label><input value="${esc(d.offerText)}" oninput="draft.offerText=this.value">
+ <label>Offer last date (discounts stop automatically after this date; leave empty for no end)</label><input type="date" value="${esc(d.offerEnd)}" oninput="draft.offerEnd=this.value">
+ <label>Minimum order amount ₹</label><input type="number" min="0" value="${esc(d.minOrder)}" oninput="draft.minOrder=+this.value">
+ <label>Combo offer: order amount ₹</label><input type="number" min="0" value="${esc(d.combo)}" oninput="draft.combo=+this.value">
+ <label>Combo offer message (what the customer gets)</label><input value="${esc(d.comboText)}" oninput="draft.comboText=this.value">
+ <label>Banner photo (ad)</label><div class="row"><button class="btn alt" onclick="pickImg(v=>{draft.banner=v;render()})">${d.banner?'Change photo':'Add photo'}</button>${d.banner?'<button class="btn alt" onclick="draft.banner=\'\';render()">Remove</button>':''}</div>
+ <label>Discount on ALL products (%)</label><div class="row"><input id="all" type="number" min="0" max="95" placeholder="e.g. 20"><button class="btn alt" style="margin:0" onclick="allDisc()">Apply</button></div></div>
+ <h2>Coupon codes</h2><div class="sec"><p class="mut" style="margin:0">Type any code and discount %. Customers enter the code in their cart.</p>${(d.coupons||[]).map((x,i)=>`<div class="row" style="align-items:end"><div style="flex:2"><label>Code</label><input value="${esc(x.code)}" oninput="draft.coupons[${i}].code=this.value.toUpperCase().replace(/ /g,'')"></div><div><label>Discount %</label><input type="number" min="1" max="95" value="${esc(x.pct)}" oninput="draft.coupons[${i}].pct=+this.value"></div><button class="btn red" style="margin:0;flex:none;width:44px" onclick="draft.coupons.splice(${i},1);render()">✕</button></div>`).join('')}<button class="btn alt" onclick="draft.coupons=draft.coupons||[];draft.coupons.push({code:'',pct:10});render()">+ Add coupon code</button></div>
+ <h2>Products</h2>`;
+ d.products.forEach((p,i)=>{
+  h+=`<div class="sec"><div class="line" style="border:0"><div class="ph">${img(p)}</div><div style="flex:1"><button class="btn alt" style="margin:0" onclick="pickImg(v=>{draft.products[${i}].img=v;render()})">${p.img?'Change photo':'Add photo'}</button></div></div>
+  <label>Product name</label><input value="${esc(p.name)}" oninput="draft.products[${i}].name=this.value">
+  <div class="row"><div><label>Price ₹</label><input type="number" min="0" value="${esc(p.price)}" oninput="draft.products[${i}].price=+this.value"></div><div><label>Discount %</label><input type="number" min="0" max="95" value="${esc(p.disc)}" oninput="draft.products[${i}].disc=+this.value"></div></div>
+  <button class="btn red" onclick="delP(${i})">Delete product</button></div>`});
+ h+=`<button class="btn alt" onclick="addP()">+ Add new product</button>
+ <h2>Password</h2><div class="sec"><label>New password (at least 6 letters/numbers; leave empty to keep current)</label><input type="text" autocomplete="off" placeholder="Type new password" oninput="draft.newpw=this.value"></div>
+ <div id="st" class="sec" style="display:none;margin-bottom:70px"></div><div class="bar"><button class="btn" style="margin:0" onclick="save()">Save &amp; Publish</button></div>
+ <p style="text-align:center"><button class="link" onclick="admin=false;go('shop')">Logout (discard unsaved)</button></p>`;
+ return h;
+}
+const enc=new TextEncoder();
+async function hp(pw,salt){const k=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveBits']);const b=await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:enc.encode(salt),iterations:100000},k,256);return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+let fails=0,lockUntil=0;
+async function login(){
+ if(Date.now()<lockUntil){toast('Too many attempts. Please wait.');return}
+ let ok=false;try{ok=(await hp($('#pw').value,D.salt))===D.ph}catch(e){toast('Login not supported in this browser');return}
+ if(ok){fails=0;admin=true;draft=JSON.parse(JSON.stringify(D));render()}
+ else{fails++;if(fails>=5){lockUntil=Date.now()+60000*Math.pow(2,Math.min(fails-5,5));toast('Locked for a while')}else toast('Wrong password')}
+}
+const disc=()=>coupon?Math.round(total()*coupon.pct/100):0;
+const payable=()=>total()-disc();
+function applyC(){const v=($('#cp').value||'').trim().toUpperCase().replace(/ /g,'');if(!v){toast('Enter a coupon code');return}const f=(D.coupons||[]).find(x=>String(x.code).trim().toUpperCase()===v&&+x.pct>0);if(!f){toast('Invalid coupon code');return}coupon={code:String(f.code).toUpperCase(),pct:Math.min(+f.pct,95)};toast('Coupon applied!');render()}
+function nudge(){const t=total(),m=+D.minOrder||0,c=+D.combo||0;let s='';
+ if(m&&t<m)s+=`<div class="sec" style="border-color:#b3261e">Minimum order is ₹${m}. Add ₹${m-t} more to place your order.</div>`;
+ if(c)s+=t>=c?`<div class="sec" style="border-color:var(--ok)">🎉 ${esc(D.comboText)}</div>`:`<div class="sec">Add ₹${c-t} more to unlock the combo offer (₹${c}+).</div>`;
+ return s}
+function addP(){draft.products.unshift({id:'p'+Date.now(),name:'New product',price:500,disc:0,img:''});render()}
+function delP(i){if(confirm('Delete this product?')){draft.products.splice(i,1);render()}}
+function allDisc(){const v=Math.min(Math.max(+$('#all').value||0,0),95);draft.products.forEach(p=>p.disc=v);render();toast('Discount '+v+'% applied to all')}
+function pickImg(cb){
+ const i=document.createElement('input');i.type='file';i.accept='image/*';
+ i.onchange=()=>{const f=i.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,800/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.72))};im.src=r.result};r.readAsDataURL(f)};
+ i.click();
+}
+function st(m,bad){const e=$('#st');if(e){e.style.display='block';e.style.borderColor=bad?'#b3261e':'var(--ok)';e.textContent=m;e.scrollIntoView({block:'center'})}toast(m,6000)}
+async function save(){
+ let a=null;try{a=window.claude&&await claude.use('artifact')}catch(e){}
+ if(!a){st('Save is not allowed here. Open this app from your own claude.ai account (the one that made it) and try again.',1);return}
+ if(draft.newpw){if(draft.newpw.length<6){st('Password must be at least 6 characters.',1);return}const s=Array.from(crypto.getRandomValues(new Uint8Array(9))).map(x=>x.toString(36)).join('');draft.salt=s;draft.ph=await hp(draft.newpw,s)}
+ delete draft.newpw;delete draft.pw;
+ const c=document.documentElement.cloneNode(true);
+ c.querySelector('#data').textContent=JSON.stringify(draft).replace(/</g,'\\u003c');
+ c.querySelector('#app').innerHTML='';c.querySelector('#toast').className='';c.querySelector('#toast').textContent='';
+ st('Saving... please wait',0);
+ try{await a.publish('<!DOCTYPE html>\n'+c.outerHTML);st('Saved! The page will reload. Login again with your password.',0)}catch(e){st('Could not save: '+(e.code||e.message||'error'),1)}
+}
+render();
+</script>
+
+
+</body></html>
